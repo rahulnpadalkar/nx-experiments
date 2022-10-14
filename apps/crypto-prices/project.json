@@ -1,0 +1,94 @@
+{
+  "name": "crypto-prices",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/crypto-prices/src",
+  "prefix": "mycrypto",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/crypto-prices",
+        "index": "apps/crypto-prices/src/index.html",
+        "main": "apps/crypto-prices/src/main.ts",
+        "polyfills": "apps/crypto-prices/src/polyfills.ts",
+        "tsConfig": "apps/crypto-prices/tsconfig.app.json",
+        "assets": [
+          "apps/crypto-prices/src/favicon.ico",
+          "apps/crypto-prices/src/assets"
+        ],
+        "styles": ["apps/crypto-prices/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/crypto-prices/src/environments/environment.ts",
+              "with": "apps/crypto-prices/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "crypto-prices:build:production"
+        },
+        "development": {
+          "browserTarget": "crypto-prices:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "crypto-prices:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/crypto-prices/**/*.ts",
+          "apps/crypto-prices/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/crypto-prices"],
+      "options": {
+        "jestConfig": "apps/crypto-prices/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
