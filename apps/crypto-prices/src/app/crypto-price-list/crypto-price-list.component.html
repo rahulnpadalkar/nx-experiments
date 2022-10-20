@@ -1,0 +1,24 @@
+<h1>Crypto Prices</h1>
+
+<!-- <ul>
+  <li *ngFor="let price of cryptoPrices">{{ price.symbol }}</li>
+</ul> -->
+
+<p-table [value]="cryptoPrices">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Symbol</th>
+      <th>Count</th>
+      <th>Price</th>
+      <th>Last Price</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-crypto>
+    <tr>
+      <td>{{ crypto.symbol }}</td>
+      <td>{{ crypto.count }}</td>
+      <td>{{ crypto.askPrice }}</td>
+      <td>{{ crypto.lastPrice }}</td>
+    </tr>
+  </ng-template>
+</p-table>
